@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iitu_web/core/constants/responsive_constants.dart';
+import 'package:iitu_web/core/extension/extensions.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   final Widget largeScreen;
@@ -14,16 +15,16 @@ class ResponsiveWidget extends StatelessWidget {
   });
 
   static bool isSmallScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width < ResponsiveConsts.smallScreen;
+    return context.mediaQuery.size.width < ResponsiveConsts.smallScreen;
   }
 
   static bool isLargeScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width > ResponsiveConsts.largeScreen;
+    return context.mediaQuery.size.width > ResponsiveConsts.largeScreen;
   }
 
   static bool isMediumScreen(BuildContext context) {
-    return MediaQuery.of(context).size.width >= ResponsiveConsts.smallScreen &&
-        MediaQuery.of(context).size.width <= ResponsiveConsts.largeScreen;
+    return context.mediaQuery.size.width >= ResponsiveConsts.smallScreen &&
+        context.mediaQuery.size.width <= ResponsiveConsts.largeScreen;
   }
 
   @override
