@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/services/locator_service.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/router/router_observer.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'IITU Web Programming',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textTheme: GoogleFonts.elMessiriTextTheme(),
       ),
       routeInformationParser: sl<AppRouter>().defaultRouteParser(),
       // routerDelegate: sl<AppRouter>().delegate(),
