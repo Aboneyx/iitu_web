@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,11 +6,22 @@ import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
 
-class HomeBodyWidget extends StatelessWidget {
+class HomeBodyWidget extends StatefulWidget {
   const HomeBodyWidget({super.key});
 
   @override
+  State<HomeBodyWidget> createState() => _HomeBodyWidgetState();
+}
+
+class _HomeBodyWidgetState extends State<HomeBodyWidget> {
+  List<String> banners = [
+    'assets/temp/banner.png',
+    'assets/temp/banner.png',
+  ];
+
+  @override
   Widget build(BuildContext context) {
+    final carouselWidth = context.mediaQuery.size.width * .8;
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.size.width * .1),
       child: Column(
@@ -106,6 +118,43 @@ class HomeBodyWidget extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          // const SizedBox(height: 150),
+          const Text(
+            'Clubs',
+            style: TextStyle(
+              fontSize: 42,
+              fontWeight: FontWeight.w700,
+              color: Colors.black,
+            ),
+          ),
+          Container(
+            height: 1,
+            width: 277,
+            color: Colors.black,
+          ),
+          const SizedBox(height: 64),
+          Container(
+            width: carouselWidth,
+            height: carouselWidth * 9 / 16,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: CarouselSlider(
+              items: banners
+                  .map(
+                    (e) => Image.asset(e),
+                  )
+                  .toList(),
+              // carouselController: buttonCarouselController,
+              options: CarouselOptions(
+                autoPlay: true,
+                enlargeCenterPage: true,
+                viewportFraction: 0.9,
+                aspectRatio: 2.0,
+                initialPage: 2,
+              ),
+            ),
           ),
           const SizedBox(height: 150),
         ],

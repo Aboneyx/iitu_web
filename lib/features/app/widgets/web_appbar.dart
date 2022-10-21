@@ -3,10 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
+import 'package:iitu_web/features/app/widgets/login_dialog.dart';
 
-class WebAppBar extends StatelessWidget {
+class WebAppBar extends StatefulWidget {
   const WebAppBar({super.key});
 
+  @override
+  State<WebAppBar> createState() => _WebAppBarState();
+}
+
+class _WebAppBarState extends State<WebAppBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,7 +77,9 @@ class WebAppBar extends StatelessWidget {
                     fontSize: 13,
                   ),
                 ),
-                onClick: () {},
+                onClick: () {
+                  _showMyDialog();
+                },
                 style: customButtonStyle(
                   backgroundColor: AppColors.kPrimaryColor,
                   borderRadius: const BorderRadius.only(
@@ -108,6 +116,38 @@ class WebAppBar extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      // barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return const LoginDialog();
+        //   height: 690,
+        //   width: 690,
+        //   child: AlertDialog(
+        //     title: const Text('AlertDialog Title'),
+        //     content: SingleChildScrollView(
+        //       child: ListBody(
+        //         children: const <Widget>[
+        //           Text('This is a demo alert dialog.'),
+        //           Text('Would you like to approve of this message?'),
+        //         ],
+        //       ),
+        //     ),
+        //     actions: <Widget>[
+        //       TextButton(
+        //         child: const Text('Approve'),
+        //         onPressed: () {
+        //           Navigator.of(context).pop();
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        // );
+      },
     );
   }
 }

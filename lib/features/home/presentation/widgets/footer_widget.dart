@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,6 +17,7 @@ class _FooterWidgetState extends State<FooterWidget> {
       color: const Color(0xff2C2A2B),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             child: const Text(
@@ -37,14 +36,14 @@ class _FooterWidgetState extends State<FooterWidget> {
               TextButton(
                 onPressed: () {},
                 child: const Text(
-                'Info',
+                  'Info',
                   style: TextStyle(
                     fontSize: 16,
                     color: Color(0xFFFFFFFF),
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {},
                 child: const Text(
@@ -55,7 +54,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {},
                 child: const Text(
@@ -66,7 +65,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {},
                 child: const Text(
@@ -80,20 +79,27 @@ class _FooterWidgetState extends State<FooterWidget> {
             ],
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  'Contacts',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFFFFFFFF),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Contacts',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Color(0xFFFFFFFF),
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: const [
@@ -111,12 +117,11 @@ class _FooterWidgetState extends State<FooterWidget> {
                           color: Color(0xffffffff),
                         ),
                       ),
-                      
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
-                    children:const  [
+                    children: const [
                       Icon(
                         Icons.mail,
                         color: Color(0xFFFFFFFF),
@@ -133,7 +138,7 @@ class _FooterWidgetState extends State<FooterWidget> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     children: const [
                       Icon(
@@ -156,21 +161,28 @@ class _FooterWidgetState extends State<FooterWidget> {
               )
             ],
           ),
-          Row(  
+          Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(onPressed: (){
-              }, icon: SvgPicture.asset('assets/icons/facebook.svg'),),
-              IconButton(onPressed: (){
-              }, icon: SvgPicture.asset('assets/icons/twitter.svg'),),
-              IconButton(onPressed: (){
-              }, icon: SvgPicture.asset('assets/icons/instagram.svg'),),
-              IconButton(onPressed: (){
-              }, icon: SvgPicture.asset('assets/icons/pinterest.svg'),),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/facebook.svg'),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/twitter.svg'),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/instagram.svg'),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/icons/pinterest.svg'),
+              ),
             ],
           )
         ],
-        
       ),
     );
   }
