@@ -81,6 +81,7 @@ ButtonStyle customButtonStyle({
   double radius = 10,
   Color foregroundColor = Colors.white,
   Color backgroundColor = Colors.black,
+  BorderRadiusGeometry? borderRadius,
 }) {
   return ElevatedButton.styleFrom(
     foregroundColor: foregroundColor,
@@ -88,7 +89,7 @@ ButtonStyle customButtonStyle({
     shadowColor: const Color.fromRGBO(255, 255, 255, 1),
     elevation: elevation,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(radius),
+      borderRadius: borderRadius ?? BorderRadius.circular(radius),
       // side: const BorderSide(color: Colors.white),
     ),
   );
