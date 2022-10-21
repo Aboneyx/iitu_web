@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
+import 'package:iitu_web/core/resources/constants.dart';
+import 'package:iitu_web/features/app/widgets/custom_button.dart';
 
 class HomeBodyWidget extends StatelessWidget {
   const HomeBodyWidget({super.key});
@@ -63,6 +66,22 @@ class HomeBodyWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 150),
+                    CustomButton(
+                      height: 65,
+                      width: 181,
+                      body: Text(
+                        'List of Clubs',
+                        style: GoogleFonts.poppins().copyWith(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                      onClick: () {},
+                      style: customButtonStyle(
+                        backgroundColor: AppColors.kPrimaryColor,
+                        radius: 5,
+                      ),
+                    ),
                     const SizedBox(height: 230),
                   ],
                 ),

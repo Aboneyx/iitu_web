@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
         smallScreen: ListView(
           children: [
             Container(
+              padding: EdgeInsets.symmetric(horizontal: context.mediaQuery.size.width * .1),
               height: 100,
               width: 100,
               color: Colors.black,
