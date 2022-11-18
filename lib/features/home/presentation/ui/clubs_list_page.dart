@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TempPage extends StatefulWidget {
-  const TempPage({super.key});
+class ClubsListPage extends StatefulWidget {
+  const ClubsListPage({super.key});
 
   @override
-  State<TempPage> createState() => _TempPageState();
+  State<ClubsListPage> createState() => _ClubsListPageState();
 }
 
-class _TempPageState extends State<TempPage> {
+class _ClubsListPageState extends State<ClubsListPage> {
   @override
   void initState() {
     // init();

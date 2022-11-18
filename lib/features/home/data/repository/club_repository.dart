@@ -7,7 +7,7 @@ import 'package:iitu_web/features/home/data/datasource/club_remote_ds.dart';
 import 'package:iitu_web/features/home/data/model/club_dto.dart';
 
 abstract class ClubRepository {
-  Future<Either<Failure, List<ClubDTO>>> authCheck();
+  Future<Either<Failure, List<ClubDTO>>> getClubs();
 }
 
 class ClubRepositoryImpl implements ClubRepository {
@@ -22,7 +22,7 @@ class ClubRepositoryImpl implements ClubRepository {
   });
 
   @override
-  Future<Either<Failure, List<ClubDTO>>> authCheck() async {
+  Future<Either<Failure, List<ClubDTO>>> getClubs() async {
     if (await networkInfo.isConnected) {
       try {
         final List<ClubDTO> clubs = await remoteDS.getClubs();

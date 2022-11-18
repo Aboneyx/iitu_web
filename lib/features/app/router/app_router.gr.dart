@@ -23,10 +23,10 @@ class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
-    TempPageRoute.name: (routeData) {
+    ClubsListPageRoute.name: (routeData) {
       return MaterialPageX<void>(
         routeData: routeData,
-        child: const TempPage(),
+        child: const ClubsListPage(),
       );
     },
   };
@@ -38,8 +38,8 @@ class _$AppRouter extends RootStackRouter {
           path: '/',
         ),
         RouteConfig(
-          TempPageRoute.name,
-          path: '/temp-page',
+          ClubsListPageRoute.name,
+          path: '/clubs-list-page',
         ),
       ];
 }
@@ -57,13 +57,13 @@ class HomePageRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TempPage]
-class TempPageRoute extends PageRouteInfo<void> {
-  const TempPageRoute()
+/// [ClubsListPage]
+class ClubsListPageRoute extends PageRouteInfo<void> {
+  const ClubsListPageRoute()
       : super(
-          TempPageRoute.name,
-          path: '/temp-page',
+          ClubsListPageRoute.name,
+          path: '/clubs-list-page',
         );
 
-  static const String name = 'TempPageRoute';
+  static const String name = 'ClubsListPageRoute';
 }

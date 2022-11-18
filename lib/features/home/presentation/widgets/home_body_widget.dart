@@ -7,7 +7,7 @@ import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
-import 'package:iitu_web/features/home/presentation/ui/temp_page.dart';
+import 'package:iitu_web/features/home/presentation/ui/clubs_list_page.dart';
 
 class HomeBodyWidget extends StatefulWidget {
   const HomeBodyWidget({super.key});
@@ -92,7 +92,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                         ),
                       ),
                       onClick: () {
-                        context.router.push(const TempPageRoute());
+                        context.router.push(const ClubsListPageRoute());
                       },
                       style: customButtonStyle(
                         backgroundColor: AppColors.kPrimaryColor,
@@ -150,7 +150,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                   .map(
                     (e) => InkWell(
                       onTap: () {
-                        context.router.push(const TempPageRoute());
+                        context.router.push(const ClubsListPageRoute());
                       },
                       child: Image.asset(e),
                     ),

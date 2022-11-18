@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:iitu_web/features/home/presentation/ui/home_page.dart';
-import 'package:iitu_web/features/home/presentation/ui/temp_page.dart';
+import 'package:iitu_web/features/home/presentation/ui/clubs_list_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -65,7 +65,7 @@ part 'app_router.gr.dart';
     //
     //
     // Home Section
-    AutoRoute<void>(page: TempPage),
+    AutoRoute<void>(page: ClubsListPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

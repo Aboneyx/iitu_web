@@ -7,6 +7,7 @@ import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/router/router_observer.dart';
 
 import 'package:iitu_web/firebase_options.dart';
+import 'package:iitu_web/multibloc_wrapper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,17 +26,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'IITU Web Programming',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: GoogleFonts.elMessiriTextTheme(),
-      ),
-      routeInformationParser: sl<AppRouter>().defaultRouteParser(),
-      // routerDelegate: sl<AppRouter>().delegate(),
-      routerDelegate: AutoRouterDelegate(
-        sl<AppRouter>(),
-        navigatorObservers: () => [RouterObserver()],
+    return MultiblocWrapper(
+      child: MaterialApp.router(
+        title: 'IITU Web Programming',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          textTheme: GoogleFonts.elMessiriTextTheme(),
+        ),
+        routeInformationParser: sl<AppRouter>().defaultRouteParser(),
+        // routerDelegate: sl<AppRouter>().delegate(),
+        routerDelegate: AutoRouterDelegate(
+          sl<AppRouter>(),
+          navigatorObservers: () => [RouterObserver()],
+        ),
       ),
     );
   }
