@@ -1,12 +1,19 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/services/locator_service.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/router/router_observer.dart';
 
+import 'package:iitu_web/firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await initLocator();
 
   runApp(const MyApp());
