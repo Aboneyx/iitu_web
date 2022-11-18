@@ -13,26 +13,22 @@ abstract class ClubRepository {
 class ClubRepositoryImpl implements ClubRepository {
   final ClubRemoteDS remoteDS;
   // final AuthLocalDS localDS;
-  final NetworkInfo networkInfo;
+  // final NetworkInfo networkInfo;
 
   ClubRepositoryImpl({
     required this.remoteDS,
     // required this.localDS,
-    required this.networkInfo,
+    // required this.networkInfo,
   });
 
   @override
   Future<Either<Failure, List<ClubDTO>>> getClubs() async {
-    if (await networkInfo.isConnected) {
-      try {
-        final List<ClubDTO> clubs = await remoteDS.getClubs();
+    try {
+      final List<ClubDTO> clubs = await remoteDS.getClubs();
 
-        return Right(clubs);
-      } on ServerException catch (e) {
-        return Left(ServerFailure(message: e.message));
-      }
-    } else {
-      return Left(ServerFailure(message: NO_INTERNET_TEXT));
+      return Right(clubs);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(message: e.message));
     }
   }
 }

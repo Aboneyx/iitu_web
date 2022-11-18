@@ -7,7 +7,6 @@ part of 'club_dto.dart';
 // **************************************************************************
 
 _$_ClubDTO _$$_ClubDTOFromJson(Map<String, dynamic> json) => _$_ClubDTO(
-      id: json['id'] as int,
       name: json['name'] as String?,
       description: json['description'] as String?,
       avatar: json['avatar'] as String?,
@@ -17,7 +16,6 @@ _$_ClubDTO _$$_ClubDTOFromJson(Map<String, dynamic> json) => _$_ClubDTO(
 
 Map<String, dynamic> _$$_ClubDTOToJson(_$_ClubDTO instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'description': instance.description,
       'avatar': instance.avatar,

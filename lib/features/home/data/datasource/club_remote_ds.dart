@@ -28,11 +28,11 @@ class ClubRemoteDsImpl extends ClubRemoteDS {
       final QuerySnapshot<Object?> snapshot = await clubsReference.get();
       final List<QueryDocumentSnapshot<Object?>> queryDocumentSnapshot = snapshot.docs;
 
-      // for (int i = 0; i < queryDocumentSnapshot.length; i++) {
-      //   print(queryDocumentSnapshot[i].data());
-      // }
+      for (int i = 0; i < queryDocumentSnapshot.length; i++) {
+        print(queryDocumentSnapshot[i].data());
+      }
 
-      return queryDocumentSnapshot.map((e) => ClubDTO.fromJson(e as Map<String, dynamic>)).toList();
+      return queryDocumentSnapshot.map((e) => ClubDTO.fromJson((e.data()) as Map<String, dynamic>)).toList();
     } catch (e) {
       log('getClubs $e', name: _tag);
       throw ServerException(message: e.toString());

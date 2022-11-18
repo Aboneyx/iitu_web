@@ -22,7 +22,7 @@ class MultiblocWrapper extends StatelessWidget {
         //   create: (context) => sl<AppBloc>(), //..add(const AppEvent.startListenDio()),
         // ),
         BlocProvider<ClubsCubit>(
-          create: (context) => ClubsCubit(sl<ClubRepository>())..getClubs(),
+          create: (context) => ClubsCubit(sl<ClubRepository>()),
         ),
       ],
       child: child,

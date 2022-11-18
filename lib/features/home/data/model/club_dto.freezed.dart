@@ -20,7 +20,6 @@ ClubDTO _$ClubDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClubDTO {
-  int get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
@@ -37,8 +36,7 @@ abstract class $ClubDTOCopyWith<$Res> {
       _$ClubDTOCopyWithImpl<$Res, ClubDTO>;
   @useResult
   $Res call(
-      {int id,
-      String? name,
+      {String? name,
       String? description,
       String? avatar,
       List<String>? images});
@@ -57,17 +55,12 @@ class _$ClubDTOCopyWithImpl<$Res, $Val extends ClubDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = freezed,
     Object? description = freezed,
     Object? avatar = freezed,
     Object? images = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -96,8 +89,7 @@ abstract class _$$_ClubDTOCopyWith<$Res> implements $ClubDTOCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String? name,
+      {String? name,
       String? description,
       String? avatar,
       List<String>? images});
@@ -113,17 +105,12 @@ class __$$_ClubDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? name = freezed,
     Object? description = freezed,
     Object? avatar = freezed,
     Object? images = freezed,
   }) {
     return _then(_$_ClubDTO(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as int,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -148,18 +135,12 @@ class __$$_ClubDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ClubDTO implements _ClubDTO {
   const _$_ClubDTO(
-      {required this.id,
-      this.name,
-      this.description,
-      this.avatar,
-      final List<String>? images})
+      {this.name, this.description, this.avatar, final List<String>? images})
       : _images = images;
 
   factory _$_ClubDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ClubDTOFromJson(json);
 
-  @override
-  final int id;
   @override
   final String? name;
   @override
@@ -177,7 +158,7 @@ class _$_ClubDTO implements _ClubDTO {
 
   @override
   String toString() {
-    return 'ClubDTO(id: $id, name: $name, description: $description, avatar: $avatar, images: $images)';
+    return 'ClubDTO(name: $name, description: $description, avatar: $avatar, images: $images)';
   }
 
   @override
@@ -185,7 +166,6 @@ class _$_ClubDTO implements _ClubDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClubDTO &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -195,7 +175,7 @@ class _$_ClubDTO implements _ClubDTO {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, description, avatar,
+  int get hashCode => Object.hash(runtimeType, name, description, avatar,
       const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
@@ -214,16 +194,13 @@ class _$_ClubDTO implements _ClubDTO {
 
 abstract class _ClubDTO implements ClubDTO {
   const factory _ClubDTO(
-      {required final int id,
-      final String? name,
+      {final String? name,
       final String? description,
       final String? avatar,
       final List<String>? images}) = _$_ClubDTO;
 
   factory _ClubDTO.fromJson(Map<String, dynamic> json) = _$_ClubDTO.fromJson;
 
-  @override
-  int get id;
   @override
   String? get name;
   @override
