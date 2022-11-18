@@ -22,7 +22,13 @@ class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: const HomePage(),
       );
-    }
+    },
+    TempPageRoute.name: (routeData) {
+      return MaterialPageX<void>(
+        routeData: routeData,
+        child: const TempPage(),
+      );
+    },
   };
 
   @override
@@ -30,7 +36,11 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           HomePageRoute.name,
           path: '/',
-        )
+        ),
+        RouteConfig(
+          TempPageRoute.name,
+          path: '/temp-page',
+        ),
       ];
 }
 
@@ -44,4 +54,16 @@ class HomePageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomePageRoute';
+}
+
+/// generated route for
+/// [TempPage]
+class TempPageRoute extends PageRouteInfo<void> {
+  const TempPageRoute()
+      : super(
+          TempPageRoute.name,
+          path: '/temp-page',
+        );
+
+  static const String name = 'TempPageRoute';
 }

@@ -1,10 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
+import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
+import 'package:iitu_web/features/home/presentation/ui/temp_page.dart';
 
 class HomeBodyWidget extends StatefulWidget {
   const HomeBodyWidget({super.key});
@@ -88,7 +91,9 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                           fontSize: 20,
                         ),
                       ),
-                      onClick: () {},
+                      onClick: () {
+                        context.router.push(const TempPageRoute());
+                      },
                       style: customButtonStyle(
                         backgroundColor: AppColors.kPrimaryColor,
                         radius: 5,
@@ -143,7 +148,12 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
             child: CarouselSlider(
               items: banners
                   .map(
-                    (e) => Image.asset(e),
+                    (e) => InkWell(
+                      onTap: () {
+                        context.router.push(const TempPageRoute());
+                      },
+                      child: Image.asset(e),
+                    ),
                   )
                   .toList(),
               // carouselController: buttonCarouselController,

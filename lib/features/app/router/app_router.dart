@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:iitu_web/features/home/presentation/ui/home_page.dart';
+import 'package:iitu_web/features/home/presentation/ui/temp_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -64,7 +65,7 @@ part 'app_router.gr.dart';
     //
     //
     // Home Section
-
+    AutoRoute<void>(page: TempPage),
   ],
 )
 class AppRouter extends _$AppRouter {}
