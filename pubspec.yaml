@@ -10,7 +10,7 @@ environment:
   flutter: ">=3.3.0"
 
 dependencies:
-  auto_route: ^5.0.2
+  auto_route: ^5.0.4
   bloc: ^8.1.0
   carousel_slider: ^4.1.1
   cloud_firestore: ^4.1.0
