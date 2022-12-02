@@ -108,29 +108,32 @@ class _ClubsListPageState extends State<ClubsListPage> {
                               ),
                             ],
                           ),
-                          child: Image.network(
-                            clubs[index].avatar ?? '',
-                            fit: BoxFit.cover,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress == null) {
-                                return child;
-                              }
-                              return Center(
-                                child: CircularProgressIndicator(
-                                  color: AppColors.kPrimaryColor,
-                                  value: loadingProgress.expectedTotalBytes != null
-                                      ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                      : null,
-                                ),
-                              );
-                            },
-                            errorBuilder: (
-                              BuildContext context,
-                              Object exception,
-                              StackTrace? stackTrace,
-                            ) {
-                              return Center(child: Text('Image Error: $exception'));
-                            },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(40),
+                            child: Image.network(
+                              clubs[index].avatar ?? '',
+                              fit: BoxFit.cover,
+                              loadingBuilder: (context, child, loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                }
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.kPrimaryColor,
+                                    value: loadingProgress.expectedTotalBytes != null
+                                        ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                        : null,
+                                  ),
+                                );
+                              },
+                              errorBuilder: (
+                                BuildContext context,
+                                Object exception,
+                                StackTrace? stackTrace,
+                              ) {
+                                return Center(child: Text('Image Error: $exception'));
+                              },
+                            ),
                           ),
                         ),
                       ],

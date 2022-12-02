@@ -8,6 +8,7 @@ part 'club_dto.g.dart';
 @freezed
 class ClubDTO with _$ClubDTO {
   const factory ClubDTO({
+    String? id,
     String? name,
     String? description,
     String? avatar,

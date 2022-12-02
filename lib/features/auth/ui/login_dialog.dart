@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/resources/constants.dart';
@@ -23,7 +24,7 @@ class _LoginDialogState extends State<LoginDialog> {
         borderRadius: BorderRadius.all(Radius.circular(40)),
       ),
       child: Container(
-        height: 690,
+        height: 690 - 70,
         width: 690,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40),
@@ -113,33 +114,55 @@ class _LoginDialogState extends State<LoginDialog> {
                 ),
               ),
               const SizedBox(height: 28),
-              Text(
-                'or continue with',
-                style: GoogleFonts.poppins().copyWith(
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 28),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 187),
-                child: CustomButton(
-                  height: 50,
-                  body: Image.asset('assets/images/google.png'),
-                  style: customButtonStyle(
-                    backgroundColor: AppColors.kWhite,
+              // TODO:
+
+              // Text(
+              //   'or continue with',
+              //   style: GoogleFonts.poppins().copyWith(
+              //     fontSize: 14,
+              //     color: Colors.white,
+              //   ),
+              // ),
+              // const SizedBox(height: 28),
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 187),
+              //   child: CustomButton(
+              //     height: 50,
+              //     body: Image.asset('assets/images/google.png'),
+              //     style: customButtonStyle(
+              //       backgroundColor: AppColors.kWhite,
+              //     ),
+              //     onClick: () {},
+              //   ),
+              // ),
+              // const SizedBox(height: 28),
+              RichText(
+                text: TextSpan(
+                  text: 'Don’t have an account yet? ',
+                  style: GoogleFonts.poppins().copyWith(
+                    fontSize: 14,
+                    color: Colors.white,
                   ),
-                  onClick: () {},
+                  children: [
+                    TextSpan(
+                      text: 'Register for free',
+                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      style: GoogleFonts.poppins().copyWith(
+                        fontSize: 14,
+                        color: Colors.white,
+                        decoration: TextDecoration.underline,
+                      ),
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(height: 28),
-              Text(
-                'Don’t have an account yet? Register for free',
-                style: GoogleFonts.poppins().copyWith(
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
+              // Text(
+              //   'Don’t have an account yet? Register for free',
+              //   style: GoogleFonts.poppins().copyWith(
+              //     fontSize: 14,
+              //     color: Colors.white,
+              //   ),
+              // ),
             ],
           ),
         ),

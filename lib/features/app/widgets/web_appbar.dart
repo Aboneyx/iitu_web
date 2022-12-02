@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
-import 'package:iitu_web/features/app/widgets/login_dialog.dart';
+import 'package:iitu_web/features/auth/ui/login_dialog.dart';
 
 class WebAppBar extends StatefulWidget {
   const WebAppBar({super.key});

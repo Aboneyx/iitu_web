@@ -29,10 +29,18 @@ class ClubRemoteDsImpl extends ClubRemoteDS {
       final List<QueryDocumentSnapshot<Object?>> queryDocumentSnapshot = snapshot.docs;
 
       for (int i = 0; i < queryDocumentSnapshot.length; i++) {
-        print(queryDocumentSnapshot[i].data());
+        log('${queryDocumentSnapshot[i].id} => ${queryDocumentSnapshot[i].data()}', name: _tag);
       }
 
-      return queryDocumentSnapshot.map((e) => ClubDTO.fromJson((e.data()) as Map<String, dynamic>)).toList();
+      // final CollectionReference collec = FirebaseFirestore.instance.collection('Organization/1/Event');
+
+      // final QuerySnapshot<Object?> collecSnap = await collec.get();
+
+      // print(collecSnap.docs[0].data());
+
+      return queryDocumentSnapshot
+          .map((e) => ClubDTO.fromJson(e.data()! as Map<String, dynamic>).copyWith(id: e.id))
+          .toList();
     } catch (e) {
       log('getClubs $e', name: _tag);
       throw ServerException(message: e.toString());

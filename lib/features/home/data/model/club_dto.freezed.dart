@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'club_dto.dart';
 
@@ -20,6 +20,7 @@ ClubDTO _$ClubDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClubDTO {
+  String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $ClubDTOCopyWith<$Res> {
       _$ClubDTOCopyWithImpl<$Res, ClubDTO>;
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? avatar,
       List<String>? images});
@@ -55,12 +57,17 @@ class _$ClubDTOCopyWithImpl<$Res, $Val extends ClubDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? avatar = freezed,
     Object? images = freezed,
   }) {
     return _then(_value.copyWith(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -89,7 +96,8 @@ abstract class _$$_ClubDTOCopyWith<$Res> implements $ClubDTOCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? name,
+      {String? id,
+      String? name,
       String? description,
       String? avatar,
       List<String>? images});
@@ -105,12 +113,17 @@ class __$$_ClubDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
     Object? avatar = freezed,
     Object? images = freezed,
   }) {
     return _then(_$_ClubDTO(
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -135,12 +148,18 @@ class __$$_ClubDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ClubDTO implements _ClubDTO {
   const _$_ClubDTO(
-      {this.name, this.description, this.avatar, final List<String>? images})
+      {this.id,
+      this.name,
+      this.description,
+      this.avatar,
+      final List<String>? images})
       : _images = images;
 
   factory _$_ClubDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ClubDTOFromJson(json);
 
+  @override
+  final String? id;
   @override
   final String? name;
   @override
@@ -152,13 +171,14 @@ class _$_ClubDTO implements _ClubDTO {
   List<String>? get images {
     final value = _images;
     if (value == null) return null;
+    if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'ClubDTO(name: $name, description: $description, avatar: $avatar, images: $images)';
+    return 'ClubDTO(id: $id, name: $name, description: $description, avatar: $avatar, images: $images)';
   }
 
   @override
@@ -166,6 +186,7 @@ class _$_ClubDTO implements _ClubDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ClubDTO &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -175,7 +196,7 @@ class _$_ClubDTO implements _ClubDTO {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, avatar,
+  int get hashCode => Object.hash(runtimeType, id, name, description, avatar,
       const DeepCollectionEquality().hash(_images));
 
   @JsonKey(ignore: true)
@@ -194,13 +215,16 @@ class _$_ClubDTO implements _ClubDTO {
 
 abstract class _ClubDTO implements ClubDTO {
   const factory _ClubDTO(
-      {final String? name,
+      {final String? id,
+      final String? name,
       final String? description,
       final String? avatar,
       final List<String>? images}) = _$_ClubDTO;
 
   factory _ClubDTO.fromJson(Map<String, dynamic> json) = _$_ClubDTO.fromJson;
 
+  @override
+  String? get id;
   @override
   String? get name;
   @override
