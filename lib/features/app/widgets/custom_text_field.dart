@@ -28,7 +28,7 @@ class CustomTextField extends StatelessWidget {
     this.keyboardType,
     this.maxLines = 1,
     this.inputFormatters,
-    required this.validator,
+    this.validator,
     this.repeatController,
     this.isVisible,
     this.suffixIcon,

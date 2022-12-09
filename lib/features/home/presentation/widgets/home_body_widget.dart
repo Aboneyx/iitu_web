@@ -7,7 +7,6 @@ import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
-import 'package:iitu_web/features/home/presentation/ui/clubs_list_page.dart';
 
 class HomeBodyWidget extends StatefulWidget {
   const HomeBodyWidget({super.key});
@@ -56,6 +55,7 @@ class _HomeBodyWidgetState extends State<HomeBodyWidget> {
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SvgPicture.asset('assets/icons/left_rectangle.svg'),
                         const SizedBox(width: 22),

@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
+import 'package:iitu_web/core/services/locator_service.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
+import 'package:iitu_web/features/auth/bloc/login_cubit.dart';
+import 'package:iitu_web/features/auth/repository/auth_repository.dart';
 import 'package:iitu_web/features/auth/ui/login_dialog.dart';
 
 class WebAppBar extends StatefulWidget {
@@ -51,7 +55,6 @@ class _WebAppBarState extends State<WebAppBar> {
               InkWell(
                 onTap: () {
                   context.router.push(const ClubsListPageRoute());
-                   
                 },
                 child: Text(
                   'Clubs',
@@ -132,7 +135,10 @@ class _WebAppBarState extends State<WebAppBar> {
       context: context,
       // barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
-        return const LoginDialog();
+        return BlocProvider(
+          create: (context) => LoginCubit(sl<IAuthRepository>()),
+          child: const LoginDialog(),
+        );
         //   height: 690,
         //   width: 690,
         //   child: AlertDialog(
