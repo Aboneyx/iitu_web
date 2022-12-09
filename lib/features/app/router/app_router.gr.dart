@@ -29,6 +29,12 @@ class _$AppRouter extends RootStackRouter {
         child: const ClubsListPage(),
       );
     },
+    ProfilePageRoute.name: (routeData) {
+      return MaterialPageX<void>(
+        routeData: routeData,
+        child: const ProfilePage(),
+      );
+    },
   };
 
   @override
@@ -40,6 +46,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           ClubsListPageRoute.name,
           path: '/clubs-list-page',
+        ),
+        RouteConfig(
+          ProfilePageRoute.name,
+          path: '/profile-page',
         ),
       ];
 }
@@ -66,4 +76,16 @@ class ClubsListPageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ClubsListPageRoute';
+}
+
+/// generated route for
+/// [ProfilePage]
+class ProfilePageRoute extends PageRouteInfo<void> {
+  const ProfilePageRoute()
+      : super(
+          ProfilePageRoute.name,
+          path: '/profile-page',
+        );
+
+  static const String name = 'ProfilePageRoute';
 }

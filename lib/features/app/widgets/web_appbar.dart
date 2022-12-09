@@ -81,8 +81,28 @@ class _WebAppBarState extends State<WebAppBar> {
             builder: (context, state) {
               return state.maybeWhen(
                 inAppState: (user) {
-                  return Row(
-                    children: [],
+                  return InkWell(
+                    onTap: () {
+                      context.router.push(const ProfilePageRoute());
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.person,
+                          size: 30,
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          user.name ?? '',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 loadingState: () {

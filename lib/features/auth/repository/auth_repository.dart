@@ -16,6 +16,8 @@ abstract class IAuthRepository {
   });
 
   Either<Failure, UserDTO> getUser();
+
+  Future<Either<Failure, String>> exit();
 }
 
 class AuthRepositoryImpl extends IAuthRepository {
@@ -81,5 +83,12 @@ class AuthRepositoryImpl extends IAuthRepository {
       log(e.toString());
       return Left(CacheFailure(message: e.toString()));
     }
+  }
+
+  @override
+  Future<Either<Failure, String>> exit() async {
+    await localDS.removeUserFromCache();
+
+    return const Right('Success');
   }
 }

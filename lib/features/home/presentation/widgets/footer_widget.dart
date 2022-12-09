@@ -19,14 +19,12 @@ class _FooterWidgetState extends State<FooterWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            child: const Text(
-              'IITU clubs',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-                color: Color(0xFFFFFFFF),
-              ),
+          const Text(
+            'IITU clubs',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 30,
+              color: Color(0xFFFFFFFF),
             ),
           ),
           Column(
@@ -84,7 +82,7 @@ class _FooterWidgetState extends State<FooterWidget> {
             children: [
               Row(
                 children: [
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   TextButton(
                     onPressed: () {},
                     child: const Text(

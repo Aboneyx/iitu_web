@@ -82,16 +82,8 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     _Exiting event,
     Emitter<AppState> emit,
   ) async {
+    await _authRepository.exit();
     emit(const AppState.notAuthorizedState());
-    // final result = await _authRepository.logOut();
-
-    // result.fold(
-    //   (l) {
-    //     log('##### _exit::: ${mapFailureToMessage(l)}');
-    //     emit(const AppState.notAuthorizedState());
-    //   },
-    //   (r) => emit(const AppState.notAuthorizedState()),
-    // );
   }
 
   Future<void> _refreshLocal(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iitu_web/core/resources/constants.dart';
 
 class CustomButton extends StatefulWidget {
   final Widget body;
@@ -95,21 +94,6 @@ ButtonStyle customButtonStyle({
   );
 }
 
-// ButtonStyle blueAlpha32ButtonStyle({
-//   double elevation = 0,
-// }) {
-//   return ElevatedButton.styleFrom(
-//     foregroundColor: AppColors.kGray400,
-//     backgroundColor: const Color(0xffe5f1ff),
-//     shadowColor: Colors.white,
-//     elevation: elevation,
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.circular(10),
-//       // side: const BorderSide(color: Colors.white),
-//     ),
-//   );
-// }
-
 ButtonStyle blackButtonStyle() {
   return ButtonStyle(
     shadowColor: MaterialStateProperty.all<Color>(
@@ -124,17 +108,6 @@ ButtonStyle blackButtonStyle() {
     ),
   );
 }
-
-// ButtonStyle pinkButtonStyle() {
-//   return ElevatedButton.styleFrom(
-//     foregroundColor: Colors.white,
-//     backgroundColor: AppColors.kPrimaryColor,
-//     shadowColor: Colors.black,
-//     shape: RoundedRectangleBorder(
-//       borderRadius: BorderRadius.circular(12),
-//     ),
-//   );
-// }
 
 // ButtonStyle gray50ButtonStyle({
 //   Color color = AppColors.kGray50,
