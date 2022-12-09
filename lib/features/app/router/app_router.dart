@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:iitu_web/features/home/presentation/ui/home_page.dart';
+import 'package:iitu_web/features/app/launcher.dart';
 import 'package:iitu_web/features/home/presentation/ui/clubs_list_page.dart';
 
 part 'app_router.gr.dart';
@@ -9,7 +8,7 @@ part 'app_router.gr.dart';
 @MaterialAutoRouter(
   routes: [
     AutoRoute(
-      page: HomePage,
+      page: Launcher,
       initial: true,
       // path: '/',
       children: [

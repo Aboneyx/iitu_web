@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
 import 'package:iitu_web/core/services/locator_service.dart';
+import 'package:iitu_web/features/app/bloc/app_bloc.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
 import 'package:iitu_web/features/auth/bloc/login_cubit.dart';
@@ -76,54 +77,73 @@ class _WebAppBarState extends State<WebAppBar> {
               ),
             ],
           ),
-          Row(
-            children: [
-              CustomButton(
-                width: 85,
-                height: 40,
-                body: Text(
-                  'Log In',
-                  style: GoogleFonts.poppins().copyWith(
-                    color: Colors.white,
-                    fontSize: 13,
-                  ),
-                ),
-                onClick: () {
-                  _showMyDialog();
+          BlocBuilder<AppBloc, AppState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                inAppState: (user) {
+                  return Row(
+                    children: [],
+                  );
                 },
-                style: customButtonStyle(
-                  backgroundColor: AppColors.kPrimaryColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(5),
-                    bottomRight: Radius.circular(5),
-                    bottomLeft: Radius.circular(20),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              CustomButton(
-                width: 85,
-                height: 40,
-                body: Text(
-                  'Sign Up',
-                  style: GoogleFonts.poppins().copyWith(
-                    color: Colors.white,
-                    fontSize: 14,
-                  ),
-                ),
-                onClick: () {},
-                style: customButtonStyle(
-                  backgroundColor: AppColors.kPrimaryColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(5),
-                    topRight: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(5),
-                  ),
-                ),
-              ),
-            ],
+                loadingState: () {
+                  return const SizedBox.square(
+                    dimension: 40,
+                    child: CircularProgressIndicator(),
+                  );
+                },
+                orElse: () {
+                  return Row(
+                    children: [
+                      CustomButton(
+                        width: 85,
+                        height: 40,
+                        body: Text(
+                          'Log In',
+                          style: GoogleFonts.poppins().copyWith(
+                            color: Colors.white,
+                            fontSize: 13,
+                          ),
+                        ),
+                        onClick: () {
+                          _showMyDialog();
+                        },
+                        style: customButtonStyle(
+                          backgroundColor: AppColors.kPrimaryColor,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(5),
+                            bottomRight: Radius.circular(5),
+                            bottomLeft: Radius.circular(20),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      CustomButton(
+                        width: 85,
+                        height: 40,
+                        body: Text(
+                          'Sign Up',
+                          style: GoogleFonts.poppins().copyWith(
+                            color: Colors.white,
+                            fontSize: 14,
+                          ),
+                        ),
+                        onClick: () {},
+                        style: customButtonStyle(
+                          backgroundColor: AppColors.kPrimaryColor,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

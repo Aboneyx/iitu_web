@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomePageRoute.name: (routeData) {
+    LauncherRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const HomePage(),
+        child: const Launcher(),
       );
     },
     ClubsListPageRoute.name: (routeData) {
@@ -34,7 +34,7 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          HomePageRoute.name,
+          LauncherRoute.name,
           path: '/',
         ),
         RouteConfig(
@@ -45,15 +45,15 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [HomePage]
-class HomePageRoute extends PageRouteInfo<void> {
-  const HomePageRoute()
+/// [Launcher]
+class LauncherRoute extends PageRouteInfo<void> {
+  const LauncherRoute()
       : super(
-          HomePageRoute.name,
+          LauncherRoute.name,
           path: '/',
         );
 
-  static const String name = 'HomePageRoute';
+  static const String name = 'LauncherRoute';
 }
 
 /// generated route for

@@ -11,7 +11,7 @@ class UserDTO with _$UserDTO {
     String? id,
     String? name,
     String? email,
-    // String? avatar,
+    String? password,
     // List<String>? images,
 
     // @JsonKey(name: "in_favorite") bool? inFav,

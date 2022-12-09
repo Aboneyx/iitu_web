@@ -1,10 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
+import 'package:iitu_web/features/app/bloc/app_bloc.dart';
+import 'package:iitu_web/features/app/widgets/custom/custom_snackbars.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
 import 'package:iitu_web/features/app/widgets/custom_text_field.dart';
 import 'package:iitu_web/features/app/widgets/validators.dart';
+import 'package:iitu_web/features/auth/bloc/login_cubit.dart';
 
 class LoginDialog extends StatefulWidget {
   const LoginDialog({super.key});
@@ -16,6 +22,7 @@ class LoginDialog extends StatefulWidget {
 class _LoginDialogState extends State<LoginDialog> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  // final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -34,137 +41,167 @@ class _LoginDialogState extends State<LoginDialog> {
           top: 29,
           bottom: 37,
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40),
-            color: AppColors.kPrimaryColor,
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              Text(
-                'Login',
-                style: GoogleFonts.poppins().copyWith(
-                  fontSize: 30,
-                  color: Colors.white,
-                ),
+        child: BlocConsumer<LoginCubit, LoginState>(
+          listener: (context, state) {
+            state.whenOrNull(
+              errorState: (String message) {
+                buildErrorCustomSnackBar(context, message);
+              },
+              loadedState: (user) {
+                BlocProvider.of<AppBloc>(context).add(AppEvent.logining(user: user));
+                context.router.pop();
+              },
+            );
+          },
+          builder: (context, state) {
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+                color: AppColors.kPrimaryColor,
               ),
-              const SizedBox(height: 44),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 37,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Email',
-                      style: GoogleFonts.poppins().copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    CustomTextField(
-                      controller: emailController,
-                      hintText: 'username@gmail.com',
-                      validator: notEmptyValidator,
-                    ),
-                    const SizedBox(height: 27),
-                    Text(
-                      'Password',
-                      style: GoogleFonts.poppins().copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    CustomTextField(
-                      controller: passwordController,
-                      hintText: 'Password',
-                      validator: notEmptyValidator,
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      'Forgot Password?',
-                      style: GoogleFonts.poppins().copyWith(
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 26),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: CustomButton(
-                  height: 50,
-                  body: Text(
-                    'Sign in',
+              child: Column(
+                children: [
+                  const SizedBox(height: 40),
+                  Text(
+                    'Login',
                     style: GoogleFonts.poppins().copyWith(
-                      fontSize: 20,
+                      fontSize: 30,
                       color: Colors.white,
                     ),
                   ),
-                  style: customButtonStyle(
-                    backgroundColor: AppColors.kPrimaryBlack,
+                  const SizedBox(height: 44),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 37,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Email',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        CustomTextField(
+                          controller: emailController,
+                          hintText: 'username@gmail.com',
+                          validator: emailValidator,
+                        ),
+                        const SizedBox(height: 27),
+                        Text(
+                          'Password',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        CustomTextField(
+                          controller: passwordController,
+                          hintText: 'Password',
+                          validator: notEmptyValidator,
+                        ),
+                        const SizedBox(height: 15),
+                        Text(
+                          'Forgot Password?',
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 12,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  onClick: () {},
-                ),
-              ),
-              const SizedBox(height: 28),
-              // TODO:
+                  const SizedBox(height: 26),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: CustomButton(
+                      height: 50,
+                      body: Text(
+                        'Sign in',
+                        style: GoogleFonts.poppins().copyWith(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: customButtonStyle(
+                        backgroundColor: AppColors.kPrimaryBlack,
+                      ),
+                      onClick: () {
+                        if (!emailController.text.emailValidator()) {
+                          buildErrorCustomSnackBar(context, 'Incorrect Email');
+                          return;
+                        }
 
-              // Text(
-              //   'or continue with',
-              //   style: GoogleFonts.poppins().copyWith(
-              //     fontSize: 14,
-              //     color: Colors.white,
-              //   ),
-              // ),
-              // const SizedBox(height: 28),
-              // Padding(
-              //   padding: const EdgeInsets.symmetric(horizontal: 187),
-              //   child: CustomButton(
-              //     height: 50,
-              //     body: Image.asset('assets/images/google.png'),
-              //     style: customButtonStyle(
-              //       backgroundColor: AppColors.kWhite,
-              //     ),
-              //     onClick: () {},
-              //   ),
-              // ),
-              // const SizedBox(height: 28),
-              RichText(
-                text: TextSpan(
-                  text: 'Don’t have an account yet? ',
-                  style: GoogleFonts.poppins().copyWith(
-                    fontSize: 14,
-                    color: Colors.white,
+                        if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+                          buildErrorCustomSnackBar(context, 'All fields are required!');
+                          return;
+                        }
+
+                        BlocProvider.of<LoginCubit>(context).login(
+                          email: emailController.text,
+                          password: passwordController.text,
+                        );
+                      },
+                    ),
                   ),
-                  children: [
-                    TextSpan(
-                      text: 'Register for free',
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                  const SizedBox(height: 28),
+                  // TODO:
+
+                  // Text(
+                  //   'or continue with',
+                  //   style: GoogleFonts.poppins().copyWith(
+                  //     fontSize: 14,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 28),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 187),
+                  //   child: CustomButton(
+                  //     height: 50,
+                  //     body: Image.asset('assets/images/google.png'),
+                  //     style: customButtonStyle(
+                  //       backgroundColor: AppColors.kWhite,
+                  //     ),
+                  //     onClick: () {},
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 28),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Don’t have an account yet? ',
                       style: GoogleFonts.poppins().copyWith(
                         fontSize: 14,
                         color: Colors.white,
-                        decoration: TextDecoration.underline,
                       ),
-                    )
-                  ],
-                ),
+                      children: [
+                        TextSpan(
+                          text: 'Register for free',
+                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          style: GoogleFonts.poppins().copyWith(
+                            fontSize: 14,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  // Text(
+                  //   'Don’t have an account yet? Register for free',
+                  //   style: GoogleFonts.poppins().copyWith(
+                  //     fontSize: 14,
+                  //     color: Colors.white,
+                  //   ),
+                  // ),
+                ],
               ),
-              // Text(
-              //   'Don’t have an account yet? Register for free',
-              //   style: GoogleFonts.poppins().copyWith(
-              //     fontSize: 14,
-              //     color: Colors.white,
-              //   ),
-              // ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

@@ -23,6 +23,7 @@ mixin _$UserDTO {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $UserDTOCopyWith<$Res> {
   factory $UserDTOCopyWith(UserDTO value, $Res Function(UserDTO) then) =
       _$UserDTOCopyWithImpl<$Res, UserDTO>;
   @useResult
-  $Res call({String? id, String? name, String? email});
+  $Res call({String? id, String? name, String? email, String? password});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$UserDTOCopyWithImpl<$Res, $Val extends UserDTO>
     Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
+    Object? password = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -67,6 +69,10 @@ class _$UserDTOCopyWithImpl<$Res, $Val extends UserDTO>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -78,7 +84,7 @@ abstract class _$$_UserDTOCopyWith<$Res> implements $UserDTOCopyWith<$Res> {
       __$$_UserDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? name, String? email});
+  $Res call({String? id, String? name, String? email, String? password});
 }
 
 /// @nodoc
@@ -94,6 +100,7 @@ class __$$_UserDTOCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
+    Object? password = freezed,
   }) {
     return _then(_$_UserDTO(
       id: freezed == id
@@ -108,6 +115,10 @@ class __$$_UserDTOCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -115,7 +126,7 @@ class __$$_UserDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserDTO implements _UserDTO {
-  const _$_UserDTO({this.id, this.name, this.email});
+  const _$_UserDTO({this.id, this.name, this.email, this.password});
 
   factory _$_UserDTO.fromJson(Map<String, dynamic> json) =>
       _$$_UserDTOFromJson(json);
@@ -126,10 +137,12 @@ class _$_UserDTO implements _UserDTO {
   final String? name;
   @override
   final String? email;
+  @override
+  final String? password;
 
   @override
   String toString() {
-    return 'UserDTO(id: $id, name: $name, email: $email)';
+    return 'UserDTO(id: $id, name: $name, email: $email, password: $password)';
   }
 
   @override
@@ -139,12 +152,14 @@ class _$_UserDTO implements _UserDTO {
             other is _$_UserDTO &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.password, password) ||
+                other.password == password));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, email);
+  int get hashCode => Object.hash(runtimeType, id, name, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +177,10 @@ class _$_UserDTO implements _UserDTO {
 
 abstract class _UserDTO implements UserDTO {
   const factory _UserDTO(
-      {final String? id, final String? name, final String? email}) = _$_UserDTO;
+      {final String? id,
+      final String? name,
+      final String? email,
+      final String? password}) = _$_UserDTO;
 
   factory _UserDTO.fromJson(Map<String, dynamic> json) = _$_UserDTO.fromJson;
 
@@ -172,6 +190,8 @@ abstract class _UserDTO implements UserDTO {
   String? get name;
   @override
   String? get email;
+  @override
+  String? get password;
   @override
   @JsonKey(ignore: true)
   _$$_UserDTOCopyWith<_$_UserDTO> get copyWith =>
