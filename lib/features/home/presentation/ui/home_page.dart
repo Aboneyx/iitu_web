@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iitu_web/core/common/widgets/responsive_widget.dart';
-import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/features/app/widgets/web_appbar.dart';
 import 'package:iitu_web/features/home/presentation/widgets/footer_widget.dart';
 import 'package:iitu_web/features/home/presentation/widgets/home_body_widget.dart';

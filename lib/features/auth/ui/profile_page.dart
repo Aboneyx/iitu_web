@@ -33,16 +33,28 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Row(
                   children: [
                     Container(
-                      color: Colors.white60,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        border: Border(
+                          right: BorderSide(
+                            color: Colors.grey.shade300,
+                          ),
+                        ),
+                      ),
                       width: 540,
                       padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 100),
                       child: Column(
                         children: [
-                          const Text(
-                            'IITU Clubs',
-                            style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w700,
+                          InkWell(
+                            onTap: () {
+                              context.router.pop();
+                            },
+                            child: const Text(
+                              'IITU Clubs',
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -129,7 +141,77 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Expanded(
                       child: Container(
-                        color: Colors.orange,
+                        padding: const EdgeInsets.all(100),
+                        color: Colors.white,
+                        child: state.maybeWhen(
+                          inAppState: (user) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 80),
+                                const Text(
+                                  'Basic Information',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(height: 20),
+                                Container(
+                                  width: 300,
+                                  padding: const EdgeInsets.all(16),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade100,
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            'Name:',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${user.name}',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            'Email:',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                          Text(
+                                            '${user.email}',
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                          orElse: () => const SizedBox(),
+                        ),
                       ),
                     ),
                   ],

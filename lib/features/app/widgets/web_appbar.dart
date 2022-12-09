@@ -46,12 +46,17 @@ class _WebAppBarState extends State<WebAppBar> {
                 ),
               ),
               const SizedBox(width: 120),
-              Text(
-                'Home page',
-                style: GoogleFonts.poppins().copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
+              InkWell(
+                onTap: () {
+                  context.router.replace(const LauncherRoute());
+                },
+                child: Text(
+                  'Home page',
+                  style: GoogleFonts.poppins().copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(width: 50),
