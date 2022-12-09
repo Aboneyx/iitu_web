@@ -28,10 +28,11 @@
             "request": "launch",
             "program": "lib/main.dart",
             "args": [
-              "-d",
-              "chrome",
-              "--web-renderer html"
-            ]
+                "-d",
+                "chrome",
+                "--web-renderer",
+                "html"
+              ]
           }
     ]
 }

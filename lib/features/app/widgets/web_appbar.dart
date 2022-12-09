@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
+import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
 import 'package:iitu_web/features/auth/ui/login_dialog.dart';
 
@@ -46,12 +48,18 @@ class _WebAppBarState extends State<WebAppBar> {
                 ),
               ),
               const SizedBox(width: 50),
-              Text(
-                'Clubs',
-                style: GoogleFonts.poppins().copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
+              InkWell(
+                onTap: () {
+                  context.router.push(const ClubsListPageRoute());
+                   
+                },
+                child: Text(
+                  'Clubs',
+                  style: GoogleFonts.poppins().copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.black,
+                  ),
                 ),
               ),
               const SizedBox(width: 50),

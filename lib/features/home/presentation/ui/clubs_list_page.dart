@@ -25,10 +25,10 @@ class _ClubsListPageState extends State<ClubsListPage> {
 
   Future<List<QueryDocumentSnapshot<Object?>>> init() async {
     try {
-      CollectionReference mapp = FirebaseFirestore.instance.collection('Organization');
+      final CollectionReference mapp = FirebaseFirestore.instance.collection('Organization');
 
-      QuerySnapshot<Object?> snapshot = await mapp.get();
-      List<QueryDocumentSnapshot<Object?>> queryDocumentSnapshot = snapshot.docs;
+      final QuerySnapshot<Object?> snapshot = await mapp.get();
+      final List<QueryDocumentSnapshot<Object?>> queryDocumentSnapshot = snapshot.docs;
       for (int i = 0; i < queryDocumentSnapshot.length; i++) {
         print(queryDocumentSnapshot[i].data());
       }
@@ -41,7 +41,7 @@ class _ClubsListPageState extends State<ClubsListPage> {
   }
 
   Future<void> addOrg() {
-    CollectionReference orgs = FirebaseFirestore.instance.collection('Organization');
+    final CollectionReference orgs = FirebaseFirestore.instance.collection('Organization');
 
     return orgs
         .add({
