@@ -9,8 +9,10 @@ import 'package:iitu_web/features/app/bloc/app_bloc.dart';
 import 'package:iitu_web/features/app/router/app_router.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
 import 'package:iitu_web/features/auth/bloc/login_cubit.dart';
+import 'package:iitu_web/features/auth/bloc/reg_cubit.dart';
 import 'package:iitu_web/features/auth/repository/auth_repository.dart';
 import 'package:iitu_web/features/auth/ui/login_dialog.dart';
+import 'package:iitu_web/features/auth/ui/reg_dialog.dart';
 
 class WebAppBar extends StatefulWidget {
   const WebAppBar({super.key});
@@ -125,7 +127,7 @@ class _WebAppBarState extends State<WebAppBar> {
                           ),
                         ),
                         onClick: () {
-                          _showMyDialog();
+                          showLoginDialog();
                         },
                         style: customButtonStyle(
                           backgroundColor: AppColors.kPrimaryColor,
@@ -148,7 +150,9 @@ class _WebAppBarState extends State<WebAppBar> {
                             fontSize: 14,
                           ),
                         ),
-                        onClick: () {},
+                        onClick: () {
+                          showRegDialog();
+                        },
                         style: customButtonStyle(
                           backgroundColor: AppColors.kPrimaryColor,
                           borderRadius: const BorderRadius.only(
@@ -170,7 +174,7 @@ class _WebAppBarState extends State<WebAppBar> {
     );
   }
 
-  Future<void> _showMyDialog() async {
+  Future<void> showLoginDialog() async {
     return showDialog<void>(
       context: context,
       // barrierDismissible: false, // user must tap button!
@@ -201,6 +205,19 @@ class _WebAppBarState extends State<WebAppBar> {
         //     ],
         //   ),
         // );
+      },
+    );
+  }
+
+  Future<void> showRegDialog() async {
+    return showDialog<void>(
+      context: context,
+      // barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return BlocProvider(
+          create: (context) => RegCubit(sl<IAuthRepository>()),
+          child: const RegDialog(),
+        );
       },
     );
   }

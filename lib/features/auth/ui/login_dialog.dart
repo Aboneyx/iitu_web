@@ -5,12 +5,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iitu_web/core/extension/extensions.dart';
 import 'package:iitu_web/core/resources/constants.dart';
+import 'package:iitu_web/core/services/locator_service.dart';
 import 'package:iitu_web/features/app/bloc/app_bloc.dart';
 import 'package:iitu_web/features/app/widgets/custom/custom_snackbars.dart';
 import 'package:iitu_web/features/app/widgets/custom_button.dart';
 import 'package:iitu_web/features/app/widgets/custom_text_field.dart';
 import 'package:iitu_web/features/app/widgets/validators.dart';
 import 'package:iitu_web/features/auth/bloc/login_cubit.dart';
+import 'package:iitu_web/features/auth/bloc/reg_cubit.dart';
+import 'package:iitu_web/features/auth/repository/auth_repository.dart';
+import 'package:iitu_web/features/auth/ui/reg_dialog.dart';
 
 class LoginDialog extends StatefulWidget {
   const LoginDialog({super.key});
@@ -181,7 +185,20 @@ class _LoginDialogState extends State<LoginDialog> {
                       children: [
                         TextSpan(
                           text: 'Register for free',
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              context.router.pop().whenComplete(() {
+                                showDialog<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return BlocProvider(
+                                      create: (context) => RegCubit(sl<IAuthRepository>()),
+                                      child: const RegDialog(),
+                                    );
+                                  },
+                                );
+                              });
+                            },
                           style: GoogleFonts.poppins().copyWith(
                             fontSize: 14,
                             color: Colors.white,

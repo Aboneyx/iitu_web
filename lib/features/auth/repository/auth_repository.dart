@@ -15,6 +15,12 @@ abstract class IAuthRepository {
     required String email,
   });
 
+  Future<Either<Failure, UserDTO>> registration({
+    required String password,
+    required String email,
+    required String name,
+  });
+
   Either<Failure, UserDTO> getUser();
 
   Future<Either<Failure, String>> exit();
@@ -65,6 +71,87 @@ class AuthRepositoryImpl extends IAuthRepository {
       log('login $e', name: _tag);
       return Left(ServerFailure(message: e.toString()));
     }
+  }
+
+  @override
+  Future<Either<Failure, UserDTO>> registration({
+    required String password,
+    required String email,
+    required String name,
+  }) async {
+    try {
+      final CollectionReference usersReference = FirebaseFirestore.instance.collection('User');
+
+      final QuerySnapshot<Object?> tempSnapshot = await usersReference.get();
+      final List<QueryDocumentSnapshot<Object?>> tempDocumentSnapshot = tempSnapshot.docs;
+
+      // for (int i = 0; i < queryDocumentSnapshot.length; i++) {
+      //   log('${queryDocumentSnapshot[i].id} => ${queryDocumentSnapshot[i].data()}', name: _tag);
+      // }
+
+      final List<UserDTO> temp = tempDocumentSnapshot
+          .map((e) => UserDTO.fromJson(e.data()! as Map<String, dynamic>).copyWith(id: e.id))
+          .toList();
+
+      for (int i = 0; i < temp.length; i++) {
+        if (temp[i].email == email) {
+          return Left(ServerFailure(message: 'This email is already busy'));
+        }
+      }
+
+      await _addUser(
+        email: email,
+        name: name,
+        password: password,
+      );
+
+      final QuerySnapshot<Object?> snapshot = await usersReference.get();
+
+      final List<QueryDocumentSnapshot<Object?>> queryDocumentSnapshot = snapshot.docs;
+
+      for (int i = 0; i < queryDocumentSnapshot.length; i++) {
+        log('${queryDocumentSnapshot[i].id} => ${queryDocumentSnapshot[i].data()}', name: _tag);
+      }
+
+      final List<UserDTO> users = queryDocumentSnapshot
+          .map((e) => UserDTO.fromJson(e.data()! as Map<String, dynamic>).copyWith(id: e.id))
+          .toList();
+
+      UserDTO? user;
+
+      for (int i = 0; i < users.length; i++) {
+        if (users[i].email == email && users[i].password == password) {
+          user = users[i];
+        }
+      }
+
+      if (user != null) {
+        await localDS.saveUserToCache(user: user);
+        return Right(user);
+      } else {
+        return Left(ServerFailure(message: 'Invalid password or email address'));
+      }
+    } catch (e) {
+      log('login $e', name: _tag);
+      return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _addUser({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    final CollectionReference usersReference = FirebaseFirestore.instance.collection('User');
+
+    await usersReference
+        .add({
+          'password': password,
+          'name': name,
+          'email': email,
+        })
+        .then((value) => log("User Added", name: _tag))
+        .catchError((error) => log("Failed to add user: $error", name: _tag));
   }
 
   @override

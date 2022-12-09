@@ -4,47 +4,49 @@ import 'package:iitu_web/core/error/failure.dart';
 import 'package:iitu_web/features/auth/model/user_dto.dart';
 import 'package:iitu_web/features/auth/repository/auth_repository.dart';
 
-part 'login_cubit.freezed.dart';
+part 'reg_cubit.freezed.dart';
 
-class LoginCubit extends Cubit<LoginState> {
-  LoginCubit(
+class RegCubit extends Cubit<RegState> {
+  RegCubit(
     this._authRepository,
-  ) : super(const LoginState.initialState());
+  ) : super(const RegState.initialState());
   final IAuthRepository _authRepository;
 
-  Future<void> login({
+  Future<void> registration({
     required String email,
     required String password,
+    required String name,
   }) async {
-    emit(const LoginState.loadingState());
+    emit(const RegState.loadingState());
 
-    final result = await _authRepository.login(
+    final result = await _authRepository.registration(
       email: email,
       password: password,
+      name: name,
     );
 
     result.fold(
       (l) {
-        emit(LoginState.errorState(message: mapFailureToMessage(l)));
+        emit(RegState.errorState(message: mapFailureToMessage(l)));
       },
       (r) {
-        emit(LoginState.loadedState(user: r));
+        emit(RegState.loadedState(user: r));
       },
     );
   }
 }
 
 @freezed
-class LoginState with _$LoginState {
-  const factory LoginState.initialState() = _InitialState;
+class RegState with _$RegState {
+  const factory RegState.initialState() = _InitialState;
 
-  const factory LoginState.loadedState({
+  const factory RegState.loadedState({
     required UserDTO user,
   }) = _LoadedState;
 
-  const factory LoginState.loadingState() = _LoadingState;
+  const factory RegState.loadingState() = _LoadingState;
 
-  const factory LoginState.errorState({
+  const factory RegState.errorState({
     required String message,
   }) = _ErrorState;
 }
