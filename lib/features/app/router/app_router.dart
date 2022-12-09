@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:iitu_web/features/app/launcher.dart';
 import 'package:iitu_web/features/auth/ui/profile_page.dart';
+import 'package:iitu_web/features/home/data/model/club_dto.dart';
+import 'package:iitu_web/features/home/presentation/ui/club_detail_page.dart';
 import 'package:iitu_web/features/home/presentation/ui/clubs_list_page.dart';
 
 part 'app_router.gr.dart';
@@ -35,6 +37,7 @@ part 'app_router.gr.dart';
     // Home Section
     AutoRoute<void>(page: ClubsListPage),
     AutoRoute<void>(page: ProfilePage),
+    AutoRoute<void>(page: ClubDetailPage),
   ],
 )
 class AppRouter extends _$AppRouter {}

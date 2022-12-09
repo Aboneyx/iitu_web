@@ -35,6 +35,16 @@ class _$AppRouter extends RootStackRouter {
         child: const ProfilePage(),
       );
     },
+    ClubDetailPageRoute.name: (routeData) {
+      final args = routeData.argsAs<ClubDetailPageRouteArgs>();
+      return MaterialPageX<void>(
+        routeData: routeData,
+        child: ClubDetailPage(
+          key: args.key,
+          club: args.club,
+        ),
+      );
+    },
   };
 
   @override
@@ -50,6 +60,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           ProfilePageRoute.name,
           path: '/profile-page',
+        ),
+        RouteConfig(
+          ClubDetailPageRoute.name,
+          path: '/club-detail-page',
         ),
       ];
 }
@@ -88,4 +102,38 @@ class ProfilePageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProfilePageRoute';
+}
+
+/// generated route for
+/// [ClubDetailPage]
+class ClubDetailPageRoute extends PageRouteInfo<ClubDetailPageRouteArgs> {
+  ClubDetailPageRoute({
+    Key? key,
+    required ClubDTO club,
+  }) : super(
+          ClubDetailPageRoute.name,
+          path: '/club-detail-page',
+          args: ClubDetailPageRouteArgs(
+            key: key,
+            club: club,
+          ),
+        );
+
+  static const String name = 'ClubDetailPageRoute';
+}
+
+class ClubDetailPageRouteArgs {
+  const ClubDetailPageRouteArgs({
+    this.key,
+    required this.club,
+  });
+
+  final Key? key;
+
+  final ClubDTO club;
+
+  @override
+  String toString() {
+    return 'ClubDetailPageRouteArgs{key: $key, club: $club}';
+  }
 }
